@@ -1,0 +1,55 @@
+header{
+    margin: 0px;
+}
+h1{
+    text-align: center;
+}
+.navbar ul{
+    list-style-type: none;
+    background-color: rgb(80, 79, 79);
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+.navbar li{
+    float: left;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+.navbar a:hover{
+    background-color: gray;
+}
+.icons{
+    display: flex;
+    
+}
+footer{
+    width: 100%;   
+    bottom: 0; 
+    left: 0;
+    position: relative;
+}
+.icons a{
+    padding: 10px;
+    margin: 10px;
+}
+.icons a i{
+    font-size: 1.5em;
+    color: black;
+}
+footer p{
+    margin-left: 10px;
+    float: left;
+    margin-bottom: 0px;
+}
+.container{
+    border-style: solid;
+    border-width: 1px;
+    margin: 10px;
+    padding: 10px;
+}
