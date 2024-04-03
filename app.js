@@ -25,29 +25,36 @@ document.addEventListener('DOMContentLoaded', function() {
         const employeeContainer = document.createElement('div');
         employeeContainer.classList.add('container');
 
-        const employeeName = document.createElement('h2');
-        employeeName.textContent = this.fullname;
+        const employeeImage = document.createElement('img');
+        employeeImage.src = this.img;
+        employeeImage.alt = this.fullName;
+
+        const employeeinfo = document.createElement('p')
+        employeeinfo.textContent = `Name: ${this.fullname}-ID: ${this.ID}`;
+        employeeinfo.textContent += `\nDepartment: ${this.department}-Level: ${this.level}`;
+        employeeinfo.textContent += `\n${this.salary}`;
 
         const employeeSalary = document.createElement('p');
         employeeSalary.textContent = `Salary: ${this.salary}`;
 
-        employeeContainer.appendChild(employeeName);
-        employeeContainer.appendChild(employeeSalary);
-
+        employeeContainer.appendChild(employeeImage);
+        employeeContainer.appendChild(employeeinfo);
         document.getElementById('main').appendChild(employeeContainer);
     };
 
-    const employees = [
-        new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior'),
-        new Employee(1001, 'Lana Ali', 'Finance', 'Senior'),
-        new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior'),
-        new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior'),
-        new Employee(1004, 'Omar Zaid', 'Development', 'Senior'),
-        new Employee(1005, 'Rana Saleh', 'Development', 'Junior'),
-        new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior')
-    ];
+    const form= document.getElementById('addnew')
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-    employees.forEach(employee => {
+        const fullname=document.getElementById("fullname").value;
+        const department=document.getElementById("department").value;
+        const level=document.getElementById("level").value;
+        const img=document.getElementById("img").value;
+        const ID= Math.floor(Math.random()*(9999-1000+1)+1000)    
+
+        const employee= new Employee(ID,fullname,department,level,img)
+
         employee.render();
+        form.reset();
     });
 });
