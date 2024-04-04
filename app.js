@@ -42,13 +42,13 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('main').appendChild(employeeContainer);
     };
     const employees = [
-        new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', '/assets/Ghazi.jpg'),
-        new Employee(1001, 'Lana Ali', 'Finance', 'Senior', '/assets/Lana.jpg'),
-        new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', '/assets/Tamara.jpg'),
-        new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', '/assets/Safi.jpg'),
-        new Employee(1004, 'Omar Zaid', 'Development', 'Senior', '/assets/Omar.jpg'),
-        new Employee(1005, 'Rana Saleh', 'Development', 'Junior', '/assets/Rana.jpg'),
-        new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', '/assets/Hadi.jpg')
+        new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', 'assets/Ghazi.jpg'),
+        new Employee(1001, 'Lana Ali', 'Finance', 'Senior', 'assets/Lana.jpg'),
+        new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', 'assets/Tamara.jpg'),
+        new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', 'assets/Safi.jpg'),
+        new Employee(1004, 'Omar Zaid', 'Development', 'Senior', 'assets/Omar.jpg'),
+        new Employee(1005, 'Rana Saleh', 'Development', 'Junior', 'assets/Rana.jpg'),
+        new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', 'assets/Hadi.jpg')
     ];
     employees.forEach(employee => {
         employee.render();
