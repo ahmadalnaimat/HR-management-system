@@ -27,46 +27,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const employeeImage = document.createElement('img');
         employeeImage.src = this.img;
-        employeeImage.alt = this.fullName;
+        employeeImage.alt = this.fullname;
 
         const employeeinfo = document.createElement('p')
-        employeeinfo.textContent = `Name: ${this.fullname}-ID: ${this.ID}`;
-        employeeinfo.textContent += `\nDepartment: ${this.department}-Level: ${this.level}`;
-        employeeinfo.textContent += `\n${this.salary}`;
-
-        const employeeSalary = document.createElement('p');
-        employeeSalary.textContent = `Salary: ${this.salary}`;
+        employeeinfo.textContent = `Name: ${this.fullname} - ID: ${this.ID}`;
+        employeeinfo.textContent += `\nDepartment: ${this.department} - Level: ${this.level}`;
+        employeeinfo.textContent += `\nSalary: ${this.salary}`;
 
         employeeContainer.appendChild(employeeImage);
         employeeContainer.appendChild(employeeinfo);
         document.getElementById('main').appendChild(employeeContainer);
     };
-    const employees = [
-        new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', './assets/Ghazi.jpg'),
-        new Employee(1001, 'Lana Ali', 'Finance', 'Senior', './assets/Lana.jpg'),
-        new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', './assets/Tamara.jpg'),
-        new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', './assets/Safi.jpg'),
-        new Employee(1004, 'Omar Zaid', 'Development', 'Senior', './assets/Omar.jpg'),
-        new Employee(1005, 'Rana Saleh', 'Development', 'Junior', './assets/Rana.jpg'),
-        new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', './assets/Hadi.jpg')
-    ];
-    employees.forEach(employee => {
-        employee.render();
+
+    const storedEmployees = JSON.parse(localStorage.getItem("employees")) || [];
+
+    if (storedEmployees.length === 0) {
+        const hardcodedEmployees = [
+            new Employee(1000, 'Ghazi Samer', 'Administration', 'Senior', './assets/Ghazi.jpg'),
+            new Employee(1001, 'Lana Ali', 'Finance', 'Senior', './assets/Lana.jpg'),
+            new Employee(1002, 'Tamara Ayoub', 'Marketing', 'Senior', './assets/Tamara.jpg'),
+            new Employee(1003, 'Safi Walid', 'Administration', 'Mid-Senior', './assets/Safi.jpg'),
+            new Employee(1004, 'Omar Zaid', 'Development', 'Senior', './assets/Omar.jpg'),
+            new Employee(1005, 'Rana Saleh', 'Development', 'Junior', './assets/Rana.jpg'),
+            new Employee(1006, 'Hadi Ahmad', 'Finance', 'Mid-Senior', './assets/Hadi.jpg')
+        ];
+        
+        localStorage.setItem("employees", JSON.stringify(hardcodedEmployees));
+
+        hardcodedEmployees.forEach(employee => {
+            employee.render();
+        });
+    }
+
+    storedEmployees.forEach(employee => {
+        const emp = new Employee(employee.ID, employee.fullname, employee.department, employee.level, employee.img);
+        emp.render();
     });
 
-    const form= document.getElementById('addnew')
+    const form = document.getElementById('addnew');
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        const fullname=document.getElementById("fullname").value;
-        const department=document.getElementById("department").value;
-        const level=document.getElementById("level").value;
-        const img=document.getElementById("img").value;
-        const ID= Math.floor(Math.random()*(9999-1000+1)+1000)    
+        const fullname = document.getElementById("fullname").value;
+        const department = document.getElementById("department").value;
+        const level = document.getElementById("level").value;
+        const img = document.getElementById("img").value;
+        const ID = Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
 
-        const employee= new Employee(ID,fullname,department,level,img)
+        const newEmployee = new Employee(ID, fullname, department, level, img);
+        storedEmployees.push(newEmployee); 
+        localStorage.setItem("employees", JSON.stringify(storedEmployees));
 
-        employee.render();
+        newEmployee.render(); 
         form.reset();
     });
 });
